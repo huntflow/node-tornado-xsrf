@@ -1,6 +1,6 @@
 {
   "name": "tornado-xsrf",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "xsrf token library compatible with tornado",
   "main": "index.js",
   "scripts": {
