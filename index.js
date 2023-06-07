@@ -6,7 +6,7 @@ import crypto from 'crypto';
 function maksData(data, mask) {
   const result = Buffer.from(data);
   for (let i = 0; i < data.length; i++) {
-    result[i] ^= mask[i % 4] || 0;
+    result[i] ^= mask[i % mask.length];
   }
 
   return result;
