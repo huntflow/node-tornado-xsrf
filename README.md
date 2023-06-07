@@ -9,4 +9,4 @@ XSRF tokens in tornado cosists in 4 parts separated by pipe symbol `|`: version 
 
 - `decodeToken(tokenStr: string): [number, Buffer, number]` parses string token into parts: version, token and timestamp
 - `makeToken(existingToken?: string): string` creates or updates token. If existingToken is passed it will be updated with the new mask
-— `compareTokens(token1: string, token2: string): boolean` — parses and compares tokens
+- `compareTokens(token1: string, token2: string): boolean` — parses and compares tokens
