@@ -1,0 +1,17 @@
+{
+  "name": "tornado-xsrf",
+  "version": "1.0.0",
+  "description": "xsrf token library compatible with tornado",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tornado",
+    "xsrf",
+    "csrf",
+    "security"
+  ],
+  "author": "",
+  "license": "ISC"
+}
