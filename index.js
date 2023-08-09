@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+const crypto = require('crypto');
 
 /**
  * @type {(data: Buffer, mask: Buffer) => Buffer}
@@ -6,7 +6,7 @@ import crypto from 'crypto';
 function maksData(data, mask) {
   const result = Buffer.from(data);
   for (let i = 0; i < data.length; i++) {
-    result[i] ^= mask[i % mask.length];
+    result[i] ^= mask[i % mask.length] || 0;
   }
 
   return result;
@@ -15,7 +15,7 @@ function maksData(data, mask) {
 /**
  * @type {(tokenStr: string) => [number, Buffer, number]}
  */
-export function decodeToken(tokenStr) {
+function decodeToken(tokenStr) {
   const parts = tokenStr.split('|');
 
   if (!parts[1] || !parts[2]) {
@@ -46,7 +46,7 @@ function getRawToken(fromCookie = '') {
 /**
  * @type {(fromCookie?: string) => string}
  */
-export function makeToken(fromCookie = undefined) {
+function makeToken(fromCookie = undefined) {
   const [version, token, timestamp] = getRawToken(fromCookie);
   const mask = crypto.randomBytes(4);
   return [version, mask.toString('hex'), maksData(token, mask).toString('hex'), timestamp].join(
@@ -57,9 +57,14 @@ export function makeToken(fromCookie = undefined) {
 /**
  * @type {(t1: string, t2: string) => boolean}
  */
-export function compareTokens(t1, t2) {
+function compareTokens(t1, t2) {
   const [, t1Buf] = decodeToken(t1);
   const [, t2Buf] = decodeToken(t2);
 
   return t1Buf.equals(t2Buf);
 }
+
+
+exports.decodeToken = decodeToken;
+exports.makeToken = makeToken;
+exports.compareTokens = compareTokens;

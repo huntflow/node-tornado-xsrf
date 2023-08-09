@@ -14,7 +14,6 @@
   ],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git@github.com:huntflow/node-tornado-xsrf.git"
